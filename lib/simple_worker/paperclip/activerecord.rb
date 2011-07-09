@@ -1,3 +1,4 @@
+# The business end of things
 module SimpleWorker::Paperclip
   # This is the section cleanroomed from https://github.com/jstorimer/delayed_paperclip/blob/master/lib/delayed/paperclip.rb
   # LICENSE.txt has been modified accordingly
