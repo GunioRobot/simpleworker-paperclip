@@ -1,2 +1,2 @@
-require "simpleworker" unless defined? SimpleWorker::Base
-require "simpleworker/paperclip"
+require "simple_worker" unless defined? SimpleWorker::Base
+require "simple_worker/paperclip"

@@ -5,8 +5,8 @@ module SimpleWorker::Paperclip
     ##
     #  Merge in the two absolutely required gem's
     #  The rest should be taken in via config.auto_merge
-    merge_gem "simpleworker-paperclip"
-    merge_gem "paperclip"
+    # merge_gem "simpleworker-paperclip"
+    # merge_gem "paperclip"
 
     ##
     #  Accessors for handling job data of the item which requires processing

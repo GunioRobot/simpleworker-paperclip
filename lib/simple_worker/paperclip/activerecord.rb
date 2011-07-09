@@ -10,10 +10,10 @@ module SimpleWorker::Paperclip
    
     # Contains methods for adding to Paperclip
     module ClassMethods
-      include InstanceMethods
-      
       # Magic def which tells simpleworker-paperclip to process this model
       def process_with_simpleworker(name, opts = {})
+        include InstanceMethods
+
         priority = opts.key?(:priority) ? options[:priority] : 0
         
         define_method "#{name}_changed?" do
@@ -65,8 +65,8 @@ module SimpleWorker::Paperclip
     module InstanceMethods
       # Paperclip-specific attributes, usually added by the migration
       PAPERCLIP_ATTRIBUTES = ['_file_size', '_file_name', '_content_type', '_updated_at']
-
       # Used to tell if an attachment has been modified by it's attributes
+
       def attachment_has_changed?(name)
         PAPERCLIP_ATTRIBUTES.each do |attribute|
           full_attribute = "#{name}#{attribute}_changed?".to_sym
@@ -83,7 +83,6 @@ module SimpleWorker::Paperclip
         self.class.columns_hash.has_key?(column.to_s)
       end
     end
-
   end
 end
 

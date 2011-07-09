@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 gem "simple_worker"
 gem "paperclip"
+gem "activesupport", :require => "active_support/core_ext"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
