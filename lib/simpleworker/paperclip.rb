@@ -1,6 +1,7 @@
 # The action-man file
-module SimpleWorker
-  module Paperclip
-    # The magic is going to go here
-  end
+require "simpleworker/paperclip/activerecord"
+require "simpleworker/paperclip/worker"
+
+if Object.const_defined?("ActiveRecord")
+  ActiveRecord::Base.send(:include, SimpleWorker::Paperclip::ActiveRecordHijack)
 end
