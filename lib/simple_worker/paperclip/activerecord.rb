@@ -1,6 +1,6 @@
-# This is the section cleanroomed from https://github.com/jstorimer/delayed_paperclip/blob/master/lib/delayed/paperclip.rb
-# LICENSE.txt has been modified accordingly
 module SimpleWorker::Paperclip
+  # This is the section cleanroomed from https://github.com/jstorimer/delayed_paperclip/blob/master/lib/delayed/paperclip.rb
+  # LICENSE.txt has been modified accordingly
   # This module is included into ActiveRecord::Base if it exists
   module ActiveRecordHijack
     # I have no idea what this does :/
