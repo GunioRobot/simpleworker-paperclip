@@ -1,4 +1,5 @@
 # The action-man file
+require "simpleworker/paperclip/base"
 require "simpleworker/paperclip/activerecord"
 require "simpleworker/paperclip/worker"
 
