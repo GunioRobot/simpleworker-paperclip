@@ -54,6 +54,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   activesupport
   bundler (~> 1.0.0)
   cucumber
