@@ -1,14 +1,18 @@
 # This is the section cleanroomed from https://github.com/jstorimer/delayed_paperclip/blob/master/lib/delayed/paperclip.rb
 # LICENSE.txt has been modified accordingly
 module SimpleWorker::Paperclip
+  # This module is included into ActiveRecord::Base if it exists
   module ActiveRecordHijack
+    # I have no idea what this does :/
     def self.included?(base)
       base.extend(ClassMethods)
     end
-
+   
+    # Contains methods for adding to Paperclip
     module ClassMethods
       include InstanceMethods
       
+      # Magic def which tells simpleworker-paperclip to process this model
       def process_with_simpleworker(name, opts = {})
         priority = opts.key?(:priority) ? options[:priority] : 0
         
@@ -56,9 +60,12 @@ module SimpleWorker::Paperclip
       end
     end
 
+
+    # Methods for the instance, not for the class...
     module InstanceMethods
       PAPERCLIP_ATTRIBUTES = ['_file_size', '_file_name', '_content_type', '_updated_at']
 
+      # Used to tell if an attachment has been modified by it's attributes
       def attachment_has_changed?(name)
         PAPERCLIP_ATTRIBUTES.each do |attribute|
           full_attribute = "#{name}#{attribute}_changed?".to_sym
@@ -70,6 +77,7 @@ module SimpleWorker::Paperclip
         false
       end
 
+      # Used to check if a specifc column on a Paperclip model exists and returns the result
       def column_exists?(column)
         self.class.columns_hash.has_key?(column.to_s)
       end
@@ -78,11 +86,15 @@ module SimpleWorker::Paperclip
   end
 end
 
+# Extending Paperclip with Paperclip::Attachment
 module Paperclip
+  # Extending Paperclip::Attachment
   class Attachment
+    # Used to tell if this particular attachment is currently processing - set and read by worker code
     attr_accessor :job_is_processing
 
-    def url_with_processed style = default_style, include_updated_timestamp = @use_timestamp
+    # Fancy def for getting the url of a processed mat
+    def url_with_processed(style = default_style, include_updated_timestamp = @use_timestamp)
       return url_without_processed style, include_updated_timestamp unless @instance.respond_to?(:column_exists?)
       return url_without_processed style, include_updated_timestamp if job_is_processing
 
