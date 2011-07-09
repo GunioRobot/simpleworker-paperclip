@@ -1,7 +1,7 @@
-Feature: something something
-  In order to something something
-  A user something something
-  something something something
+Feature: Paperclip configuration
+  In order to background-process Paperclip tasks in SimpleWorker
+  As a user
+  I want to configure SimpleWorker
 
   Scenario: something something
     Given inspiration
