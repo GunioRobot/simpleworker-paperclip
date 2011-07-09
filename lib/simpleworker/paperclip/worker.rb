@@ -1,4 +1,5 @@
 module SimpleWorker::Paperclip
+  # Worker which is sent off to SimpleWorker
   class Worker < SimpleWorker::Base
  
     ##

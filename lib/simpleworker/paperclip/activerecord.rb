@@ -63,6 +63,7 @@ module SimpleWorker::Paperclip
 
     # Methods for the instance, not for the class...
     module InstanceMethods
+      # Paperclip-specific attributes, usually added by the migration
       PAPERCLIP_ATTRIBUTES = ['_file_size', '_file_name', '_content_type', '_updated_at']
 
       # Used to tell if an attachment has been modified by it's attributes
