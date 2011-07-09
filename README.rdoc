@@ -1,6 +1,6 @@
 = simpleworker-paperclip
 
-Description goes here.
+The shinest gluecode for using SimpleWorker + Paperclip
 
 == Contributing to simpleworker-paperclip
  
