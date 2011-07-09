@@ -11,7 +11,7 @@ module SimpleWorker
       def self.configured?(stfu = false)
        @configured = SimpleWorker.config.auto_merge == true
        @configured = @configured && SimpleWorker.config.database.is_a?(Hash)
-       @configured = @configured && SimpleWorker.config.arbitary[:paperclip] == true
+       @configured = @configured && SimpleWorker.config.arbitrary[:paperclip] == true
        if @configured == false
          raise SimpleWorker::Paperclip::ConfigurationError unless stfu == true
          return false
