@@ -20,6 +20,7 @@ module SimpleWorker
          return true
        end
       end
+
     end
   end
 end

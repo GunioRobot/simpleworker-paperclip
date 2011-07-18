@@ -36,6 +36,8 @@ module SimpleWorker::Paperclip
           
           # ENQUEUE THE JOB HERE
           # LIEK NAOW
+          @j = SimpleWorkerPaperclipJob.new(:klass => self.class.name, :id => self.id, :name => name.to_s)
+          @j.queue
         end
 
         define_method "#{name}_processed!" do
