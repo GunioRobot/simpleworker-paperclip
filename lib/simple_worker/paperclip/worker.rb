@@ -20,11 +20,12 @@ module SimpleWorker::Paperclip
       # Get accessors out of hash
       @instance_klass = items[:klass]
       @instance_id    = items[:id]
-      @attacment_name = items[:name]
+      @attachment_name = items[:name]
     end
 
     # Executed in SimpleWorker Cloud and with #run_local
     def run
+      log "SWPC is running! #{@instance_klass}, #{@instance_id}, #{@attachment_name}"
       # Get the proper attachment_name from #to_sym
       @attachment_name = @attachment_name.to_sym
       # Contantize @instance_klass
