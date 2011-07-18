@@ -23,11 +23,13 @@ module SimpleWorker::Paperclip
 
         define_method "halt_processing_for_#{name}" do
           return unless self.send("#{name}_changed?")
-
+          puts "Halting processing!!!"
           false # halts processing
         end
 
         define_method "enqueue_job_for_#{name}" do
+          puts "Enqueuing job..."         
+ 
           return unless self.send("#{name}_changed?")
 
           # Paperclip::Attachment#queue_existing_for_delete sets paperclip
@@ -36,8 +38,13 @@ module SimpleWorker::Paperclip
           
           # ENQUEUE THE JOB HERE
           # LIEK NAOW
-          @j = SimpleWorkerPaperclipJob.new(:klass => self.class.name, :id => self.id, :name => name.to_s)
-          @j.queue
+          if SimpleWorker::Paperclip::Base.configured?
+            puts "FIRE THE LAZOR"
+            @j = SimpleWorkerPaperclipJob.new(:klass => self.class.name, :id => self.id, :name => name.to_s)
+            @j.queue
+          else
+            puts "SimpleWorker::Paperclip::Base.configured? returned false, check yourself before you wreck yourself"
+          end
         end
 
         define_method "#{name}_processed!" do
