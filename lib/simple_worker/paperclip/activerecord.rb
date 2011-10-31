@@ -8,7 +8,7 @@ module SimpleWorker::Paperclip
     def self.included?(base)
       base.extend(ClassMethods)
     end
-   
+
     # Contains methods for adding to Paperclip
     module ClassMethods
       # Magic def which tells simpleworker-paperclip to process this model
@@ -16,7 +16,7 @@ module SimpleWorker::Paperclip
         include InstanceMethods
 
         priority = opts.key?(:priority) ? options[:priority] : 0
-        
+
         define_method "#{name}_changed?" do
           attachment_has_changed?(name)
         end
@@ -33,7 +33,7 @@ module SimpleWorker::Paperclip
           # Paperclip::Attachment#queue_existing_for_delete sets paperclip
           # attributes to nil when the record has been marked for deletion
           return if self.class::PAPERCLIP_ATTRIBUTES.map { |suff| self.send "#{name}#{suff}" }.compact.empty?
-          
+
           # ENQUEUE THE JOB HERE
           # LIEK NAOW
           @j = SimpleWorkerPaperclipJob.new(:klass => self.class.name, :id => self.id, :name => name.to_s)

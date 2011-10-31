@@ -1,7 +1,7 @@
 module SimpleWorker::Paperclip
   # Worker which is sent off to SimpleWorker
   class Worker < SimpleWorker::Base
- 
+
     ##
     #  Merge in the two absolutely required gem's
     #  The rest should be taken in via config.auto_merge
@@ -15,7 +15,7 @@ module SimpleWorker::Paperclip
 
     ##
     #  #initialize - sets accessors from a hash for less LOC config
-    #  @params [Hash, items] Location for item to be processed 
+    #  @params [Hash, items] Location for item to be processed
     def initialize(items = {})
       # Get accessors out of hash
       @instance_klass = items[:klass]
@@ -49,4 +49,4 @@ module SimpleWorker::Paperclip
   end
 end
 
-      
+
